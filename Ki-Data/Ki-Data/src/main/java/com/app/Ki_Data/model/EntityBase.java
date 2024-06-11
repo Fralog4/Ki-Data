@@ -1,13 +1,16 @@
 package com.app.Ki_Data.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @MappedSuperclass
 @DiscriminatorColumn(name = "character_type", discriminatorType = DiscriminatorType.STRING)
-@Data
+@Getter
+@Setter
 public abstract class EntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
