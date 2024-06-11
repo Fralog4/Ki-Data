@@ -2,4 +2,4 @@
 
 - list
 - spring security
-- 
+- Jpa Repository interface 
