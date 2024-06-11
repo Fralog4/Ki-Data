@@ -1,7 +1,9 @@
 package com.app.Ki_Data.dto;
 
-import jakarta.persistence.Entity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -9,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class CharacterDTO {
+public class CharacterPgDTO {
     private int id;
     private String name;
     private String race;

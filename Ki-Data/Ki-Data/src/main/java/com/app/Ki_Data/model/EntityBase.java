@@ -2,15 +2,13 @@ package com.app.Ki_Data.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity
-@Data
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 @DiscriminatorColumn(name = "character_type", discriminatorType = DiscriminatorType.STRING)
-public abstract class Character {
+@Data
+public abstract class EntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;

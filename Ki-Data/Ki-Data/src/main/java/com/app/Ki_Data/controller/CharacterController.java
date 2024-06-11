@@ -1,7 +1,6 @@
 package com.app.Ki_Data.controller;
 
-import com.app.Ki_Data.dto.CharacterDTO;
-import com.app.Ki_Data.model.Character;
+import com.app.Ki_Data.dto.CharacterPgDTO;
 import com.app.Ki_Data.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -16,20 +15,19 @@ public class CharacterController {
     CharacterService characterService;
 
     @GetMapping
-    public List<CharacterDTO> getAllCharacters(){
+    public List<CharacterPgDTO> getAllCharacters(){
         return characterService.getAllCharacter();
     }
 
     @GetMapping("/{id}")
-    public CharacterDTO getCharacterById(@PathVariable int id){
+    public CharacterPgDTO getCharacterById(@PathVariable int id){
         return characterService.getCharacterById(id);
     }
 
     @Secured("ROLE_ADMIN")
     @PostMapping("/create")
-    public CharacterDTO saveCharacter(@RequestBody CharacterDTO characterDTO) {
-        System.out.println("Received CharacterDTO: " + characterDTO);
-        return characterService.saveCharacter(characterDTO);
+    public CharacterPgDTO saveCharacter(@RequestBody CharacterPgDTO characterPgDTO) {
+        return characterService.saveCharacter(characterPgDTO);
     }
     @Secured("ROLE_ADMIN")
     @DeleteMapping("/delete/{id}")
