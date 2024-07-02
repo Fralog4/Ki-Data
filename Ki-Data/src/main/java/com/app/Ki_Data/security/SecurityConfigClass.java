@@ -14,8 +14,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
-@EnableWebSecurity
-@Configuration
+//@EnableWebSecurity
+//@Configuration
 public class SecurityConfigClass {
 
     @Bean
