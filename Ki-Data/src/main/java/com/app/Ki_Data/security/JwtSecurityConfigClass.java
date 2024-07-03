@@ -62,19 +62,19 @@ public class JwtSecurityConfigClass {
         return httpSecurity.build();
     }
 
-    @Bean
-    public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder()
-                .setType(EmbeddedDatabaseType.H2)
-                .addScript(JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION)
-                .build();
-    }
+  //  @Bean
+   // public DataSource dataSource() {
+     //   return new EmbeddedDatabaseBuilder()
+       //         .setType(EmbeddedDatabaseType.H2)
+         //       .addScript(JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION)
+           //     .build();
+    //}
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
     @Bean
-    UserDetailsService userDetailsService(DataSource dataSource){
+    UserDetailsService userDetailsService(){
         UserDetails user= User
                 .withUsername("user")
                 .roles("USER")
@@ -85,14 +85,15 @@ public class JwtSecurityConfigClass {
                 .withUsername("admin")
                 .password("admin")
                 .passwordEncoder(str -> passwordEncoder().encode(str))
-                .roles("ADMIN", "USER")
+                .roles("ADMIN")
                 .build();
 
-        var jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
-        jdbcUserDetailsManager.createUser(user);
-        jdbcUserDetailsManager.createUser(admin);
+     //   var jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+       // jdbcUserDetailsManager.createUser(user);
+      //  jdbcUserDetailsManager.createUser(admin);
 
-        return jdbcUserDetailsManager;
+       // return jdbcUserDetailsManager;
+        return new InMemoryUserDetailsManager(admin, user);
     }
     @Bean
     public JwtDecoder jwtDecoder(RSAKey rsaKey) throws JOSEException {
