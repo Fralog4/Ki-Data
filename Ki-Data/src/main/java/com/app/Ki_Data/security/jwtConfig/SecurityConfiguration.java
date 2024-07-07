@@ -31,12 +31,10 @@ public class SecurityConfiguration {
                     }
                 })
                 .authorizeHttpRequests(auth-> auth
-                                .requestMatchers("api/auth/**", "/characters")
-                                .permitAll()
-                                .anyRequest().authenticated()
+                        .requestMatchers("/auth/**", "/characters")
+                        .permitAll()
+                        .anyRequest().authenticated()
                 );
-
-
         return httpSecurity.build();
     }
 }
