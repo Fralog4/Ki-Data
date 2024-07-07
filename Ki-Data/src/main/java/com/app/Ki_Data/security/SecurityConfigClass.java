@@ -1,4 +1,4 @@
-package com.app.Ki_Data.security;
+/***package com.app.Ki_Data.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.Customizer;
@@ -52,8 +52,6 @@ public class SecurityConfigClass {
                 .roles("ADMIN")
                 .build();
 
-        //System.out.println("user password: "+user.getPassword());
-        //System.out.println("admin password: "+admin.getPassword());
         return new InMemoryUserDetailsManager(admin, user);
     }
-}
+}***/

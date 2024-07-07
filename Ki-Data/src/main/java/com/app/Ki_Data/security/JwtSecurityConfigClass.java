@@ -1,9 +1,6 @@
-package com.app.Ki_Data.security;
+/***package com.app.Ki_Data.security;
 
 import com.nimbusds.jose.JOSEException;
-import com.nimbusds.jose.KeySourceException;
-import com.nimbusds.jose.jwk.JWK;
-import com.nimbusds.jose.jwk.JWKSelector;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
@@ -15,7 +12,6 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -29,20 +25,17 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-import javax.crypto.KeyGenerator;
 import javax.sql.DataSource;
-
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.RSAPublicKey;
-import java.util.List;
 import java.util.UUID;
 
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
-@EnableWebSecurity
-@Configuration
+//@EnableWebSecurity
+//@Configuration
 public class JwtSecurityConfigClass {
 
     @Bean
@@ -51,8 +44,8 @@ public class JwtSecurityConfigClass {
                 .authorizeHttpRequests(auth-> auth
                         .requestMatchers("/characters").permitAll()
                         .requestMatchers("/characters/{id}").permitAll()
-                        .requestMatchers("/characters/delete/**").hasRole("ADMIN")
-                        .requestMatchers("/characters/create").hasRole("ADMIN")
+                        .requestMatchers("/characters/delete/**").hasAnyRole("ADMIN")
+                        .requestMatchers("/characters/create").hasAnyRole("ADMIN")
                         .requestMatchers("/authenticate").permitAll()
                         .requestMatchers(toH2Console()).permitAll()
                 )
@@ -124,4 +117,4 @@ public class JwtSecurityConfigClass {
         var jwkSet= new JWKSet(rsaKey);
         return ((jwkSelector, context) -> jwkSelector.select(jwkSet));
     }
-}
+}***/
