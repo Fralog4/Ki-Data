@@ -24,12 +24,12 @@ public class CharacterController {
         return characterService.getCharacterById(id);
     }
 
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_ADMIN"})
     @PostMapping("/create")
     public CharacterPgDTO saveCharacter(@RequestBody CharacterPgDTO characterPgDTO) {
         return characterService.saveCharacter(characterPgDTO);
     }
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_ADMIN"})
     @DeleteMapping("/delete/{id}")
     public void deleteCharacterById(@PathVariable int id){
         characterService.deleteCharacterById(id);

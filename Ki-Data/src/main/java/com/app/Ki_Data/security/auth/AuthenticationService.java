@@ -16,38 +16,40 @@ public class AuthenticationService {
     private final JwtService service;
     private final AuthenticationManager authenticationManager;
 
-    public AutheticationResponse register(RegisterRequest request) {
-        var user= User.builder()
+    public AuthenticationResponse register(RegisterRequest request, Role role) {
+        var user = User.builder()
                 .name(request.getName())
                 .lastName(request.getLastName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
+                .role(role)
                 .build();
         repository.save(user);
-        var jwtToken= service.generateToken(user);
-        /***var admin= User.builder()
-                .name(request.getFirstName())
+        var jwtToken = service.generateToken(user);
+
+       /* var admin = User.builder()
+                .name(request.getName())
                 .lastName(request.getLastName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.ADMIN)
                 .build();
         repository.save(admin);
-        var jwtTokenAdmin= service.generateToken(admin);***/
-        return AutheticationResponse.builder()
+        var jwtTokenAdmin = service.generateToken(admin);*/
+
+        return AuthenticationResponse.builder()
                 .token(jwtToken)
+                //.adminToken(jwtTokenAdmin)
                 .build();
     }
-
-    public AutheticationResponse authenticate(AuthenticationRequest authenticationRequest) {
+    public AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),
                         authenticationRequest.getPassword()));
         var user=repository.findByEmail(authenticationRequest.getEmail())
                 .orElseThrow();
         var jwtToken= service.generateToken(user);
-        return AutheticationResponse.builder()
+        return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
     }
