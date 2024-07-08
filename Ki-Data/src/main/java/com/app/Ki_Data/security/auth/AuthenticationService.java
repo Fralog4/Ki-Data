@@ -1,9 +1,7 @@
 package com.app.Ki_Data.security.auth;
 
 import com.app.Ki_Data.security.jwtConfig.JwtService;
-import com.app.Ki_Data.security.user.Role;
-import com.app.Ki_Data.security.user.User;
-import com.app.Ki_Data.security.user.UserRepository;
+import com.app.Ki_Data.security.user.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,6 +26,15 @@ public class AuthenticationService {
                 .build();
         repository.save(user);
         var jwtToken= service.generateToken(user);
+        /***var admin= User.builder()
+                .name(request.getFirstName())
+                .lastName(request.getLastName())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .role(Role.ADMIN)
+                .build();
+        repository.save(admin);
+        var jwtTokenAdmin= service.generateToken(admin);***/
         return AutheticationResponse.builder()
                 .token(jwtToken)
                 .build();
