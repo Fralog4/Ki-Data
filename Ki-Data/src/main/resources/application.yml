@@ -17,3 +17,6 @@ logging:
   level:
     org.hibernate.SQL: debug
     org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+jwt:
+  secret: pF0ivYyNzWeUQHDbTh4vYAYDn8WJ5wunlfcQBeCYDzCX7HGYRfkhD/51YhPSX9gXPd7awk1ht/PE319nVS6HIg/cdhMBKGwntvg0ONSjs/PMZSNBZ0PUcOJAxRGu2LvOysyz+6F6n8d1SWTJc4rjph8zWpThAc1qui6AN4FIdFVXfr0LLidug5OVtSDG5yN74tCTEWcY5yi58moNF4wo1tmW1/5xQou/ov1yQuFvTHlJCU/4h0/EA7b2eMXkFWZcq4x9sLSXErPwKlbPoULeVCMKel4djKzBlco3aQbfCr9NF8FyDjaS74rgKJAfjnFnjvFGX77exts34o+iAqrN49g0P2jeG/Y1WqHI3zBkFlI=

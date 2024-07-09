@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
@@ -11,15 +12,14 @@ import org.springframework.stereotype.Service;
 import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
 public class JwtService {
-
-    private static final String SECRET_KEY="pF0ivYyNzWeUQHDbTh4vYAYDn8WJ5wunlfcQBeCYDzCX7HGYRfkhD/51YhPSX9gXPd7awk1ht/PE319nVS6HIg/cdhMBKGwntvg0ONSjs/PMZSNBZ0PUcOJAxRGu2LvOysyz+6F6n8d1SWTJc4rjph8zWpThAc1qui6AN4FIdFVXfr0LLidug5OVtSDG5yN74tCTEWcY5yi58moNF4wo1tmW1/5xQou/ov1yQuFvTHlJCU/4h0/EA7b2eMXkFWZcq4x9sLSXErPwKlbPoULeVCMKel4djKzBlco3aQbfCr9NF8FyDjaS74rgKJAfjnFnjvFGX77exts34o+iAqrN49g0P2jeG/Y1WqHI3zBkFlI=\n";
+    @Value("${jwt.secret}")
+    public String jwtSecret;
     public String extractUsername(String jwtToken) {
         return extractClaim(jwtToken, Claims::getSubject);
     }
@@ -66,11 +66,7 @@ public class JwtService {
     }
 
     private SecretKey getSignInKey() {
-        byte[] keyBytes= Decoders.BASE64.decode(SECRET_KEY);
+        byte[] keyBytes= Decoders.BASE64.decode(jwtSecret);
         return Keys.hmacShaKeyFor(keyBytes);
-    }
-    public List extractRolesFromToken(String token) {
-        Claims claims = extractAllClaims(token);
-        return claims.get("roles", List.class);
     }
 }

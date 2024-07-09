@@ -26,20 +26,8 @@ public class AuthenticationService {
                 .build();
         repository.save(user);
         var jwtToken = service.generateToken(user);
-
-       /* var admin = User.builder()
-                .name(request.getName())
-                .lastName(request.getLastName())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.ADMIN)
-                .build();
-        repository.save(admin);
-        var jwtTokenAdmin = service.generateToken(admin);*/
-
         return AuthenticationResponse.builder()
                 .token(jwtToken)
-                //.adminToken(jwtTokenAdmin)
                 .build();
     }
     public AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest) {
