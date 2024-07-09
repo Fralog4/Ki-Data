@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Service
 public class CharacterService{
     @Autowired
-    CharacterRepository characterRepository;
+    private CharacterRepository characterRepository;
 
     public List<CharacterPgDTO> getAllCharacter(){
         return characterRepository.findAll()

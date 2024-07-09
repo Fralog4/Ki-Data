@@ -1,4 +1,4 @@
-package com.app.Ki_Data.security;
+/***package com.app.Ki_Data.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -38,4 +38,4 @@ public class JwtAutheticationClass {
                 .collect(Collectors.joining(" "));
     }
 }
-record JwtResponse(String token) {}
+record JwtResponse(String token) {}***/
