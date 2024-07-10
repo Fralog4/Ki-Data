@@ -3,27 +3,23 @@ package com.app.Ki_Data.controller;
 import com.app.Ki_Data.dto.CharacterPgDTO;
 import com.app.Ki_Data.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
-@RequestMapping("/characters")
+@RequestMapping("/kiData")
 public class CharacterController {
     @Autowired
     CharacterService characterService;
 
-    @GetMapping
+    @GetMapping("/characters")
     public List<CharacterPgDTO> getAllCharacters(){
         return characterService.getAllCharacter();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/character/{id}")
     public CharacterPgDTO getCharacterById(@PathVariable int id){
         return characterService.getCharacterById(id);
     }

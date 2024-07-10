@@ -1,7 +1,9 @@
 package com.app.Ki_Data.security.auth;
 
 import com.app.Ki_Data.security.jwtConfig.JwtService;
-import com.app.Ki_Data.security.user.*;
+import com.app.Ki_Data.security.user.Role;
+import com.app.Ki_Data.security.user.User;
+import com.app.Ki_Data.security.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
