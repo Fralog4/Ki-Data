@@ -1,5 +1,5 @@
 # Ki_Data Web Application
-
+![Dragon Ball Character](https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df0411c5-1b85-411b-88fe-2bd41f3c83cd/dhr4h2t-ca1e82d7-e888-42db-946f-4a6a61a9abef.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2RmMDQxMWM1LTFiODUtNDExYi04OGZlLTJiZDQxZjNjODNjZFwvZGhyNGgydC1jYTFlODJkNy1lODg4LTQyZGItOTQ2Zi00YTZhNjFhOWFiZWYucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.dOzeBbpJ6URZN53j39ad9yx3kdAYSuIDmrXbS07cY_I)
 ## Overview
 Ki_Data is my first real web application, it's designed to manage and display information about Dragon Ball characters, like a sort of Wiki. The application provides RESTful endpoints to create, read, and delete character data. It is built using Java and frameworks to ensure a robust, secure, and maintainable codebase.
 
