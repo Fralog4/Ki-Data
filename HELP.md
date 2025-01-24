@@ -1,10 +1,3 @@
-# Read Me First
-The following was discovered as part of building this project:
-
-* The original package name 'com.app.Ki-Data' is invalid and this project uses 'com.app.Ki_Data' instead.
-
-# Getting Started
-
 ### Reference Documentation
 For further reference, please consider the following sections:
 

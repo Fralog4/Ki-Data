@@ -68,12 +68,10 @@ The application uses JWT (JSON Web Token) for authentication and authorization t
    - **Request Body Example**:
      ```json
      {
-       "id": "number",
        "name" : "name",
-       "surname" : "surname", 
+       "last_name" : "last_name", 
        "email": "newuser@example.com",
        "password": "newpassword",
-       "role": "USER/ADMIN"
      }
      ```
 
