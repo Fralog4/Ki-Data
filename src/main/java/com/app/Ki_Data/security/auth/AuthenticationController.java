@@ -12,7 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
+
     private final AuthenticationService authenticationService;
+
+    @PostMapping("/registerUsrOnly")
+    public ResponseEntity<AuthenticationResponse> registerUserOnly(@RequestBody RegisterRequest registerRequest){
+
+        Role role= Role.USER;
+
+        return ResponseEntity.ok(authenticationService.register(registerRequest,role));
+    }
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {

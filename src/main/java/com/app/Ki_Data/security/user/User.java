@@ -23,7 +23,7 @@ public class User implements UserDetails {
     @GeneratedValue
     private Integer id;
     private String name;
-    private String lastName;
+    private String last_name;
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
@@ -63,4 +63,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public boolean isAlreadyTake(){return false;}
 }

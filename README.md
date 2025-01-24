@@ -70,7 +70,7 @@ The application uses JWT (JSON Web Token) for authentication and authorization t
      {
        "id": "number",
        "name" : "name",
-       "lastName" : "lastName", 
+       "surname" : "surname", 
        "email": "newuser@example.com",
        "password": "newpassword",
        "role": "USER/ADMIN"

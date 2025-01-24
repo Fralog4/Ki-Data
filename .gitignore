@@ -7,3 +7,5 @@ target/
 *.iws
 *.iml
 *.ipr
+db.yml
+jwt.yml
