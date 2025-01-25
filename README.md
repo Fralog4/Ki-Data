@@ -15,6 +15,8 @@ Ki_Data is my first real web application, it's designed to manage and display in
 - **ModelMapper**: Library for mapping between DTOs and entities.
 - **JWT Token**: For secure token-based authentication.
 - **Jakarta Persistence API (JPA)**: For ORM mapping and database interaction.
+- **Spring AI**: For integration with AI services.
+- **Mistral AI**: AI service used for chatbot functionality.
 
 ## Project Structure
 The project is organized into several packages, each serving a distinct purpose:
@@ -25,6 +27,7 @@ The project is organized into several packages, each serving a distinct purpose:
 - **repository**: Spring Data JPA repositories for data access.
 - **service**: Service layer containing business logic.
 - **security**: Configuration classes for application security.
+- **ai**: Contains AI-related classes and services.
 
 ## Endpoints
 The application exposes the following endpoints:
@@ -33,6 +36,7 @@ The application exposes the following endpoints:
 - `GET /kiData/character/{id}`: Retrieve a character by ID.
 - `POST /kiData/create`: Create a new character (Admin only).
 - `DELETE /kiData/delete/{id}`: Delete a character by ID (Admin only).
+- `GET /kiData/ai/dende`: Chat with AI Dende bot.
 
 ## Setup and Running the Application
 
