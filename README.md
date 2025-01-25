@@ -63,15 +63,15 @@ The application uses JWT (JSON Web Token) for authentication and authorization t
 
 #### Endpoints
 
-- **Register a User**: `POST /kiData/auth/register`
-   - This endpoint allows new users to register by providing their details in a JSON body. The role of the user (either `USER` or `ADMIN`) must be specified.
+- **Register a User**: `POST /kiData/auth/registerUsrOnly`
+   - This endpoint allows new users to register by providing their details in a JSON body. 
    - **Request Body Example**:
      ```json
      {
        "name" : "name",
        "last_name" : "last_name", 
        "email": "newuser@example.com",
-       "password": "newpassword",
+       "password": "newpassword"
      }
      ```
 
