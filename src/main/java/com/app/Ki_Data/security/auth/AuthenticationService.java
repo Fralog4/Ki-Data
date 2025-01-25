@@ -5,6 +5,7 @@ import com.app.Ki_Data.security.user.Role;
 import com.app.Ki_Data.security.user.User;
 import com.app.Ki_Data.security.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class AuthenticationService {
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
@@ -26,7 +28,9 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(role)
                 .build();
+        log.debug("The user is : " + user.getName()+" and has the role of "+user.getRole());
         repository.save(user);
+        log.info("User registered: " + user);
         var jwtToken = service.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
@@ -37,7 +41,10 @@ public class AuthenticationService {
                 new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),
                         authenticationRequest.getPassword()));
         var user=repository.findByEmail(authenticationRequest.getEmail())
-                .orElseThrow();
+                .orElseGet(()->{
+                    log.error("User with email " + authenticationRequest.getEmail() + " not found");
+                    return null;
+                });
         var jwtToken= service.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)

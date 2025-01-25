@@ -15,7 +15,6 @@ import java.util.List;
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name="_user")
 public class User implements UserDetails {
@@ -64,5 +63,4 @@ public class User implements UserDetails {
         return true;
     }
 
-    public boolean isAlreadyTake(){return false;}
 }
