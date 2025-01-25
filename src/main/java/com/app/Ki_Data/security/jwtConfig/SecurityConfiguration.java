@@ -31,7 +31,7 @@ public class SecurityConfiguration {
                     }
                 })
                 .authorizeHttpRequests(auth-> auth
-                        .requestMatchers("/auth/**", "/kiData/characters","/kiData/character/**")
+                        .requestMatchers("/auth/**", "/kiData/characters","/kiData/character/**","/kiData/ai/**")
                         .permitAll()
                         .anyRequest().authenticated()
                 );

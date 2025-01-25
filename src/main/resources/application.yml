@@ -3,8 +3,10 @@ spring:
     import:
       - classpath:db.yml
       - classpath:jwt.yml
+      - classpath:ai.yml
 
 logging:
   level:
     org.hibernate.SQL: debug
     org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.springframework.security: debug

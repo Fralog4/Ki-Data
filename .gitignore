@@ -9,3 +9,4 @@ target/
 *.ipr
 db.yml
 jwt.yml
+ai.yml
