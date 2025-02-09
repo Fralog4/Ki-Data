@@ -31,7 +31,7 @@ public class SecurityConfiguration {
                     }
                 })
                 .authorizeHttpRequests(auth-> auth
-                        .requestMatchers("/auth/**", "/kiData/characters","/kiData/character/**","/kiData/ai/**")
+                        .requestMatchers("/auth/**", "/kiData/characters","/kiData/character/**","/kiData/ai/**","/v3/api-docs/**","/swagger-ui/**")
                         .permitAll()
                         .anyRequest().authenticated()
                 );
