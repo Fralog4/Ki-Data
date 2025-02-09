@@ -10,3 +10,5 @@ target/
 db.yml
 jwt.yml
 ai.yml
+swagger-ui.yml
+springdoc-openapi.yml

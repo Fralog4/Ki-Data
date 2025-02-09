@@ -4,6 +4,8 @@ spring:
       - classpath:db.yml
       - classpath:jwt.yml
       - classpath:ai.yml
+      - classpath:swagger-ui.yml
+      - classpath:springdoc-openapi.yml
 
 logging:
   level:

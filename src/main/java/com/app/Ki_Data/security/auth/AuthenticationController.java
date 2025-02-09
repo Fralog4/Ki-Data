@@ -35,7 +35,7 @@ public class AuthenticationController {
 
     @Hidden
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {  //TODO: questa logica va spostata in una classe terza che usa il service e poi richiamo il suo metodo da terminale non va bene che l'endpoint sia accessibile nel sorgente
         Role role;
         try {
             role = Role.valueOf(request.getRole().toUpperCase());

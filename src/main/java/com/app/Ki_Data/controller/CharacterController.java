@@ -4,6 +4,9 @@ import com.app.Ki_Data.dto.CharacterPgDTO;
 import com.app.Ki_Data.service.CharacterService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/kiData")
 @Tag(name = "Characters", description = "Endpoints for managing characters")
+@SecurityScheme(name = "JWT", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "JWT", in = SecuritySchemeIn.HEADER, description = "JWT token for authentication")
 public class CharacterController {
 
     private final CharacterService characterService;
@@ -41,7 +45,7 @@ public class CharacterController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "Character not found")
     })
     @Parameter(name = "id", description = "The id of the character to retrieve", required = true)
-    @GetMapping("/character/{id}")
+    @GetMapping("/characters/{id}")
     public CharacterPgDTO getCharacterById(@PathVariable int id){
         return characterService.getCharacterById(id);
     }
@@ -52,11 +56,14 @@ public class CharacterController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "Character created successfully",
             content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = CharacterPgDTO.class))),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "Invalid request"),
-            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "403", description = "Unauthorized request")
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "403", description = "Unauthorized request"),
 
+    },
+    security = {
+            @io.swagger.v3.oas.annotations.security.SecurityRequirement(name = "JWT")
     })
     @PreAuthorize("hasAnyRole('ADMIN')")
-    @PostMapping("/create")
+    @PostMapping("/characters")
     public CharacterPgDTO saveCharacter(@RequestBody CharacterPgDTO characterPgDTO) {
         return characterService.saveCharacter(characterPgDTO);
     }
@@ -69,10 +76,13 @@ public class CharacterController {
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "Invalid request"),
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "403", description = "Unauthorized request")
 
-            })
+            },
+    security = {
+            @io.swagger.v3.oas.annotations.security.SecurityRequirement(name = "JWT")
+    })
     @Parameter(name = "id", description = "The id of the character to delete", required = true)
     @PreAuthorize("hasAnyRole('ADMIN')")
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/characters/{id}")
     public void deleteCharacterById(@PathVariable int id){
         characterService.deleteCharacterById(id);
     }
