@@ -36,7 +36,7 @@ public class ChatController {
                     content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = Map.class))),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "Invalid request")
     })
-    @GetMapping("/ai/generate")
+    @GetMapping("/ai/mistralchat")
     public Map<String,String> generate(@RequestParam(value = "message", defaultValue = "Tell me a joke") String message) {
         return Map.of("generation", this.chatModel.call(message));
     }
@@ -48,7 +48,7 @@ public class ChatController {
                     content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = String.class))),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "Invalid request")
     })
-    @GetMapping("/ai/dende")
+    @GetMapping("/ai/dendechat")
     public String generateWithPrompt(@RequestParam(value = "message", defaultValue = "You are a Namekian named Dende") String message) {
 
         SystemMessage systemMessage = new SystemMessage(sysPrompt);

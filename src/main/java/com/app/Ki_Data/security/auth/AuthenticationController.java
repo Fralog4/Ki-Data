@@ -25,7 +25,7 @@ public class AuthenticationController {
                     content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = AuthenticationResponse.class))),
                     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "Invalid request")
             })
-    @PostMapping("/registerUsrOnly")
+    @PostMapping("/registrationUsrOnly")
     public ResponseEntity<AuthenticationResponse> registerUserOnly(@RequestBody RegisterRequest registerRequest){
 
         Role role= Role.USER;
@@ -34,14 +34,11 @@ public class AuthenticationController {
     }
 
     @Hidden
-    @PostMapping("/register")
+    @PostMapping("/registrationADM")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {  //TODO: questa logica va spostata in una classe terza che usa il service e poi richiamo il suo metodo da terminale non va bene che l'endpoint sia accessibile nel sorgente
-        Role role;
-        try {
-            role = Role.valueOf(request.getRole().toUpperCase());
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(new AuthenticationResponse("Invalid role specified"));
-        }
+
+        Role role= Role.ADMIN;
+
         return ResponseEntity.ok(authenticationService.register(request, role));
     }
 
