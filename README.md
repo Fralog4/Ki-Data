@@ -33,10 +33,10 @@ The project is organized into several packages, each serving a distinct purpose:
 The application exposes the following endpoints:
 
 - `GET /kiData/characters`: Retrieve all characters.
-- `GET /kiData/character/{id}`: Retrieve a character by ID.
-- `POST /kiData/create`: Create a new character (Admin only).
-- `DELETE /kiData/delete/{id}`: Delete a character by ID (Admin only).
-- `GET /kiData/ai/dende`: Chat with AI Dende bot.
+- `GET /kiData/characters/{id}`: Retrieve a character by ID.
+- `POST /kiData/characters`: Create a new character (Admin only).
+- `DELETE /kiData/characters/{id}`: Delete a character by ID (Admin only).
+- `GET /kiData/ai/dendechat`: Chat with AI Dende bot.
 
 ## Setup and Running the Application
 
@@ -67,7 +67,7 @@ The application uses JWT (JSON Web Token) for authentication and authorization t
 
 #### Endpoints
 
-- **Register a User**: `POST /kiData/auth/registerUsrOnly`
+- **Register a User**: `POST /kiData/auth/registrationUsrOnly`
    - This endpoint allows new users to register by providing their details in a JSON body. 
    - **Request Body Example**:
      ```json
@@ -79,7 +79,7 @@ The application uses JWT (JSON Web Token) for authentication and authorization t
      }
      ```
 
-- **Authenticate a User**: `POST /kiData/auth/authenticate`
+- **Authenticate a User**: `POST /kiData/auth/authentication`
    - This endpoint is used to authenticate a user. It requires the user's credentials (email and password) to be provided in a JSON body. Upon successful authentication, a JWT token is returned.
    - **Request Body Example**:
      ```json
@@ -100,5 +100,5 @@ The application uses JWT (JSON Web Token) for authentication and authorization t
 Role-based access control is enforced to restrict access to certain endpoints based on the user's role. Only users with the `ADMIN` role have permission to create or delete characters.
 
 - **Endpoints accessible by ADMIN only**:
-   - `POST /kiData/create`: Create a new character.
-   - `DELETE /kiData/delete/{id}`: Delete a character by ID.
+   - `POST /kiData/characters`: Create a new character.
+   - `DELETE /kiData/characters/{id}`: Delete a character by ID.
