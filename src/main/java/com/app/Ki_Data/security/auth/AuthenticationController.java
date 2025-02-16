@@ -35,7 +35,7 @@ public class AuthenticationController {
 
     @Hidden
     @PostMapping("/registrationADM")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {  //TODO: questa logica va spostata in una classe terza che usa il service e poi richiamo il suo metodo da terminale non va bene che l'endpoint sia accessibile nel sorgente
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {  //TODO: questa logica va spostata in una classe terza DBInit che usa il service con un metodo @PostConstruct
 
         Role role= Role.ADMIN;
 
