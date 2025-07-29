@@ -32,7 +32,7 @@ public class SecurityConfiguration {
                 })
                 .authorizeHttpRequests(auth-> auth
                         .requestMatchers("/v3/api-docs/**","/swagger-ui/**").anonymous()
-                        .requestMatchers("/auth/**", "/kiData/characters","/kiData/ai/**")
+                        .requestMatchers("/auth/**", "/kiData/characters/**","/kiData/ai/**")
                         .permitAll()
                         .anyRequest().authenticated()
                 );
