@@ -14,5 +14,6 @@ public class RegisterRequest {
     private String last_name;
     private String email;
     private String password;
-    private String role;
+    @Builder.Default
+    private String role="USER";
 }

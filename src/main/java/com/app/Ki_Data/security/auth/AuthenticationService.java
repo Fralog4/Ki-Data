@@ -7,7 +7,9 @@ import com.app.Ki_Data.security.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +30,7 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(role)
                 .build();
-        log.debug("The user is : " + user.getName()+" and has the role of "+user.getRole());
+        log.debug("The user is : " + user.getName() + " and has the role of " + user.getRole());
         repository.save(user);
         log.info("User registered: " + user);
         var jwtToken = service.generateToken(user);
@@ -36,18 +38,37 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .build();
     }
-    public AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),
-                        authenticationRequest.getPassword()));
-        var user=repository.findByEmail(authenticationRequest.getEmail())
-                .orElseGet(()->{
-                    log.error("User with email " + authenticationRequest.getEmail() + " not found");
-                    return null;
-                });
-        var jwtToken= service.generateToken(user);
-        return AuthenticationResponse.builder()
-                .token(jwtToken)
-                .build();
+
+    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+        log.info("Attempting to authenticate user: " + request.getEmail());
+        try {
+            // Verifica se l'utente esiste
+            var user = repository.findByEmail(request.getEmail())
+                    .orElseThrow(() -> {
+                        log.error("User not found: " + request.getEmail());
+                        return new UsernameNotFoundException("User not found with email: " + request.getEmail());
+                    });
+
+            log.info("User found, attempting authentication...");
+
+            // Prova l'autenticazione
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()
+                    )
+            );
+
+            log.info("Authentication successful, generating token...");
+            var jwtToken = service.generateToken(user);
+            return AuthenticationResponse.builder()
+                    .token(jwtToken)
+                    .build();
+
+        } catch (Exception e) {
+            log.error("Authentication error for user " + request.getEmail(), e);
+            throw new AuthenticationServiceException("Authentication failed: " + e.getMessage());
+        }
+
     }
 }
