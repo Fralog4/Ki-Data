@@ -15,6 +15,9 @@ public class MistralAIService {
     @Value("${spring.ai.mistralai.api-key}")
     private String apiToken;
 
+    @Value("${spring.ai.mistralai.agent.id}")
+    private String agentId;
+
     private final RestTemplate restTemplate;
 
     public MistralAIService(RestTemplate restTemplate) {

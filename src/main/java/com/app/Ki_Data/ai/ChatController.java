@@ -49,14 +49,13 @@ public class ChatController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "Invalid request")
     })
     @GetMapping("/ai/dendechat")
-    public String generateWithPrompt(@RequestParam(value = "message", defaultValue = "You are a Namekian named Dende") String message) {
+    public String generateWithPrompt(@RequestParam(value = "message") String message) {
 
         SystemMessage systemMessage = new SystemMessage(sysPrompt);
         Prompt prompt= new Prompt(
                 new SystemMessage(systemMessage.getContent()),
                 new UserMessage(message)
         );
-
         return this.chatModel.call(prompt).getResult().getOutput().getContent();
     }
 }
