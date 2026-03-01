@@ -1,3 +1,4 @@
+/*
 package com.app.Ki_Data.model;
 
 import jakarta.persistence.*;
@@ -8,3 +9,4 @@ public class CharacterPg extends EntityBase{
         super();
     }
 }
+*/

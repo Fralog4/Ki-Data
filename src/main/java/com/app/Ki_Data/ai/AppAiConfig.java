@@ -1,3 +1,4 @@
+/*
 package com.app.Ki_Data.ai;
 
 import org.springframework.context.annotation.Bean;
@@ -11,3 +12,4 @@ public class AppAiConfig {
         return new RestTemplate();
     }
 }
+*/

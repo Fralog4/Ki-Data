@@ -1,3 +1,4 @@
+/*
 package com.app.Ki_Data.ai;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -45,4 +46,4 @@ public class MistralAIService {
             return "Exception: " + e.getMessage();
         }
     }
-}
+}*/
