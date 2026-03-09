@@ -1,0 +1,14 @@
+spring:
+  config:
+    import:
+      - classpath:db.yml
+      - classpath:jwt.yml
+      - classpath:ai.yml
+      - classpath:swagger-ui.yml
+      - classpath:springdoc-openapi.yml
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.springframework.security: debug
